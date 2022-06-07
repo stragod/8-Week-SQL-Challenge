@@ -34,3 +34,4 @@ Recreate the following table output using the available data:
 ## Rank All The Things
 Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.
 
+![Capture 3](https://user-images.githubusercontent.com/45940205/172490570-914dcdbf-5dfd-45cd-b93b-fe48b2d3ed7c.PNG)
