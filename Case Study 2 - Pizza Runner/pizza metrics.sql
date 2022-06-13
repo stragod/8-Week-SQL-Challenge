@@ -73,8 +73,15 @@ with t as
 )
 select  customer_id,exclusions_and_extras from t
 where exclusions_and_extras = 1;
+
 # What was the total volume of pizzas ordered for each hour of the day?
 select  hour(order_time) as hours,count(order_id) from new_customer_orders
-group by hour(order_time);
+group by hour(order_time)
+order by hour(order_time);
 
 # What was the volume of orders for each day of the week?
+select  dayname(order_time) as day_of_the_week,count(order_id) from new_customer_orders
+# Since we only need day of the week, we use dayofweek() function which indexes day of week to filter the the weekend (check documentation for indexing details)
+where dayofweek(order_time) <> 1 AND dayofweek(order_time) <> 7 
+group by dayname(order_time)
+order by day(order_time); 
