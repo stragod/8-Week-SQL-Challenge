@@ -1,4 +1,7 @@
-# data cleaning
+# Data Cleaning 
+# Customer order table - removing blank and Nan values and replacing with null values 
+# remember to check the resultant table to see if the null values filled in the table are key-words ( highlighted in grey) and not strings.
+# key word null are very useful since they can easily be identified using inbuilt mysql functions
 drop table if exists new_customer_orders;
 create table new_customer_orders as
 (select order_id,customer_id,pizza_id,
@@ -15,7 +18,9 @@ end as extras,order_time
 from customer_orders);
  select * from new_customer_orders;
  drop table if exists new_runner_orders;
- create table new_runner_orders as
+ 
+# Creating a new cleaned table with null values and no other blank or NaN like values
+create table new_runner_orders as
  (select order_id,runner_id,
  case
  when pickup_time is null or pickup_time like "null" then null
@@ -40,10 +45,9 @@ from customer_orders);
  end as cancellation 
  from runner_orders);
  select * from new_runner_orders;
-# alter table new_runner_orders
-# change the column datatypes to the correct format
+
+# Change the column datatypes to the correct format
 ALTER TABLE new_runner_orders
 change column pickup_time pickup_time datetime,
 CHANGE COLUMN distance distance decimal(10,2),
 change column duration duration int;
-#CHANGE COLUMN duration duration int;
