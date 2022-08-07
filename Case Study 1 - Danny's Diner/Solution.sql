@@ -1,9 +1,8 @@
-select * from information_schema.columns
-where table_schema = 'test'
-order by table_name,ordinal_position;
+
 
 #What is the total amount each customer spent at the restaurant?
-select sum(price), customer_id from `test`.menu,`test`.sales
+select customer_id,sum(price) as `total_amount` from ( 
+select * from sales join menu using (product_id))t
 group by customer_id;
 
 #How many days has each customer visited the restaurant?
